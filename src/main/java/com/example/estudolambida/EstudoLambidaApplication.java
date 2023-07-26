@@ -1,6 +1,7 @@
 package com.example.estudolambida;
 
 import com.example.estudolambida.product.Product;
+import com.example.estudolambida.sevices.ProductService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -17,16 +18,25 @@ public class EstudoLambidaApplication {
         List<Product> list = new ArrayList<>();
 
         list.add(new Product("TV", 900.00));
-        list.add(new Product("Notebook", 1200.00));
-        list.add(new Product("Tablet", 450.00));
+        list.add(new Product("Mouse", 50.00));
+        list.add(new Product("Tablet", 350.00));
+        list.add(new Product("HD", 80.90));
 
-        list.sort((p1, p2) -> p1.getName().toUpperCase().compareTo(p2.getName().toUpperCase()));
+        ProductService ps = new ProductService();
 
-        for (Product p : list) {
-            System.out.println(p);
-        }
+        double sum = ps.filteredSum(list, product -> product.getName().charAt(0) == 'T');
+        double sum2 = ps.filteredSum(list, product -> product.getName().charAt(0) == 'M');
 
-        System.out.println("aqui");
+        System.out.println("Sum = " + String.format("%.2f", sum));
+        System.out.println("Sum2 = " + String.format("%.2f", sum2));
+
+//        list.sort((p1, p2) -> p1.getName().toUpperCase().compareTo(p2.getName().toUpperCase()));
+//
+//        for (Product p : list) {
+//            System.out.println(p);
+//        }
+//
+//        System.out.println("aqui");
     }
 
 }
